@@ -1,0 +1,83 @@
+/* 7b) Design a "card" layout using CSS and flexbox */
+
+/* Container for all cards */
+.results-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+/* The actual Card Layout */
+.student-card {
+  display: flex;               /* Flexbox */
+  flex-direction: column;      /* Stack items vertically */
+  justify-content: center;     /* Center vertically */
+  align-items: center;         /* Center horizontally */
+  
+  border: 1px solid #ddd;      /* Border */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Shadow */
+  padding: 30px;               /* Padding */
+  
+  text-align: center;          /* Centered text */
+  
+  border-radius: 12px;
+  background-color: white;
+  width: 300px;
+  transition: transform 0.2s;
+}
+
+.student-card:hover {
+  transform: translateY(-5px);
+}
+
+.student-card h2 {
+  margin: 0 0 10px 0;
+  color: #333;
+  font-size: 22px;
+}
+
+.student-card .roll-no {
+  color: #777;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.student-card .score {
+  font-size: 32px;
+  font-weight: bold;
+  color: #04AA6D;
+  margin: 10px 0;
+}
+
+.student-card .status {
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.status.pass {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status.fail {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+/* General Page Styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 40px 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #2c3e50;
+}
