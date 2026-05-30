@@ -1,0 +1,61 @@
+body {
+  font-family: sans-serif;
+  padding: 0;
+  margin: 0;
+}
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+nav {
+  margin-bottom: 20px;
+  border-bottom: 1px solid black;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+nav a, nav button {
+  margin-right: 15px;
+}
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.columns {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+@media (min-width: 600px) {
+  .columns {
+    flex-direction: row;
+  }
+  .col {
+    flex: 1;
+  }
+}
+.question-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+input, button {
+  margin-bottom: 10px;
+  padding: 5px;
+}
+.auth-container {
+  max-width: 300px;
+  margin: 40px auto;
+}
+.error {
+  color: red;
+  margin-bottom: 10px;
+}
