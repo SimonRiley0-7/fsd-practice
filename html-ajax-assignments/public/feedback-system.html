@@ -1,25 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AJAX Online Feedback System</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 20px; max-width: 600px; margin: auto; }
-    form { background: #f4f4f4; padding: 20px; border: 1px solid #ccc; margin-bottom: 20px; }
-    .form-group { margin-bottom: 15px; }
-    .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
-    .form-group input, .form-group textarea { width: 100%; padding: 8px; box-sizing: border-box; }
-    button { padding: 10px 15px; background: #007bff; color: white; border: none; cursor: pointer; }
-    button:hover { background: #0056b3; }
-    #feedbackList { border-top: 2px solid #eee; padding-top: 20px; }
-    .feedback-item { background: #fff; border: 1px solid #ddd; padding: 15px; margin-bottom: 10px; border-left: 5px solid #007bff; }
-    .feedback-item h4 { margin: 0 0 5px 0; }
-    .feedback-item p { margin: 0 0 10px 0; }
-    .feedback-item small { color: #888; }
-    #statusMessage { color: green; margin-bottom: 15px; font-weight: bold; display: none; }
-  </style>
 </head>
+
 <body>
 
   <h1>Student Feedback System</h1>
@@ -48,68 +35,36 @@
     const feedbackList = document.getElementById('feedbackList');
     const statusMessage = document.getElementById('statusMessage');
 
-    // Function to render a single feedback item to the DOM
-    function renderFeedback(feedback) {
-      const div = document.createElement('div');
-      div.className = 'feedback-item';
-      div.innerHTML = `
-        <h4>${feedback.name}</h4>
-        <p>${feedback.message}</p>
-        <small>Submitted on: ${feedback.date}</small>
-      `;
-      // Prepend to show the latest feedback at the top
-      feedbackList.insertBefore(div, feedbackList.children[1]); 
-    }
+    // Handle form submission via simple AJAX
+    form.addEventListener('submit', function(e) {
+      e.preventDefault(); // Prevent page reload
 
-    // Fetch existing feedback on page load
-    async function loadInitialFeedback() {
-      try {
-        const response = await fetch('/api/feedback');
-        const data = await response.json();
-        data.forEach(item => renderFeedback(item));
-      } catch (err) {
-        console.error('Error loading feedback:', err);
-      }
-    }
+      // Get values from form
+      const feedbackData = {
+        name: document.getElementById('name').value,
+        message: document.getElementById('message').value
+      };
 
-    // Handle form submission via AJAX (Fetch API)
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault(); // Prevent default form submission (page reload)
+      // Simple AJAX POST request
+      fetch('/api/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(feedbackData)
+      })
+      .then(response => response.json())
+      .then(newFeedback => {
+        // Display the new feedback instantly
+        const div = document.createElement('div');
+        div.innerHTML = `<h4>${newFeedback.name}</h4><p>${newFeedback.message}</p><hr>`;
+        feedbackList.appendChild(div);
 
-      const name = document.getElementById('name').value;
-      const message = document.getElementById('message').value;
-
-      try {
-        // Send AJAX POST request to the server
-        const response = await fetch('/api/feedback', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ name, message })
-        });
-
-        if (response.ok) {
-          const newFeedback = await response.json();
-          
-          // Display the new feedback dynamically
-          renderFeedback(newFeedback);
-          
-          // Show success message and reset form
-          statusMessage.style.display = 'block';
-          setTimeout(() => { statusMessage.style.display = 'none'; }, 3000);
-          form.reset();
-        } else {
-          alert('Failed to submit feedback.');
-        }
-      } catch (err) {
-        console.error('Error submitting feedback:', err);
-        alert('An error occurred while submitting feedback.');
-      }
+        // Show success message and clear form
+        statusMessage.style.display = 'block';
+        setTimeout(() => { statusMessage.style.display = 'none'; }, 3000);
+        form.reset();
+      });
     });
-
-    // Load feedback when the page loads
-    window.onload = loadInitialFeedback;
   </script>
 </body>
+
 </html>
