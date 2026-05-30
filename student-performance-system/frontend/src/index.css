@@ -1,0 +1,60 @@
+body {
+  font-family: sans-serif;
+  padding: 0;
+  margin: 0;
+}
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+nav {
+  margin-bottom: 20px;
+  border-bottom: 1px solid black;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+nav a, nav button {
+  margin-right: 15px;
+}
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.search-bar {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+.student-list, .details-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+@media (min-width: 600px) {
+  .details-grid {
+    flex-direction: row;
+  }
+  .details-grid .card {
+    flex: 1;
+  }
+}
+.card {
+  border: 1px solid #ccc;
+  padding: 15px;
+}
+input, button {
+  margin-bottom: 10px;
+  padding: 5px;
+}
+.auth-container {
+  max-width: 300px;
+  margin: 40px auto;
+}
+.error {
+  color: red;
+  margin-bottom: 10px;
+}
