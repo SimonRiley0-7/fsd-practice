@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Background Color Changer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 0.5s ease; /* Smooth transition for background color */
+    }
+
+    .btn {
+      padding: 15px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      background-color: #333;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+    }
+    .btn:active {
+      transform: scale(0.95);
+    }
+
+    .message {
+      margin-top: 20px;
+      padding: 15px 25px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #155724;
+      background-color: #d4edda;
+      border: 1px solid #c3e6cb;
+      border-radius: 5px;
+      
+      /* Animation setup */
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: all 0.5s ease;
+      display: none;
+    }
+
+    /* Class used to trigger the animation */
+    .message.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <button class="btn" onclick="changeColor()">Change Background Color</button>
+
+  <div id="confirmationMessage" class="message">
+    Background color changed successfully!
+  </div>
+
+  <script>
+    function changeColor() {
+      // 1. Generate a random hex color
+      const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+      
+      // 2. Change the background color
+      document.body.style.backgroundColor = randomColor;
+
+      // 3. Show confirmation message with animation
+      const msg = document.getElementById('confirmationMessage');
+      
+      // Briefly remove the class (if it exists) to restart the CSS transition
+      msg.classList.remove('show');
+      
+      // Force a reflow so the browser registers the removal before adding it back
+      void msg.offsetWidth; 
+      
+      // Add the class to trigger the CSS transition/animation
+      msg.classList.add('show');
+
+      // Hide the message after 2.5 seconds
+      setTimeout(() => {
+        msg.classList.remove('show');
+      }, 2500);
+    }
+  </script>
+
+</body>
+</html>
