@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Styled Login Form with Validation</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #e9ecef;
+      height: 100vh;
+      margin: 0;
+      /* Centered Layout using Flexbox */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-card {
+      background-color: white;
+      padding: 40px;
+      border-radius: 12px; /* Rounded corners */
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 350px;
+      text-align: center;
+    }
+
+    .login-card h2 {
+      margin-top: 0;
+      color: #343a40;
+      margin-bottom: 25px;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #495057;
+      font-size: 14px;
+    }
+
+    /* Colored input fields with rounded corners */
+    .input-group input {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #ced4da;
+      border-radius: 8px; /* Rounded corners */
+      background-color: #f8f9fa; /* Colored input background */
+      box-sizing: border-box;
+      font-size: 15px;
+      transition: border-color 0.3s ease, background-color 0.3s ease;
+    }
+
+    .input-group input:focus {
+      outline: none;
+      border-color: #80bdff;
+      background-color: #fff;
+    }
+
+    /* Validation Effects */
+    .input-group input.error {
+      border-color: #dc3545; /* Red border for errors */
+      background-color: #fff8f8;
+    }
+
+    .error-text {
+      color: #dc3545;
+      font-size: 12px;
+      margin-top: 5px;
+      display: none; /* Hidden by default */
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #0d6efd;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 10px;
+    }
+
+    .login-btn:hover {
+      background-color: #0b5ed7;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-card">
+    <h2>Welcome Back</h2>
+    
+    <form id="loginForm" novalidate>
+      <div class="input-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="name@example.com">
+        <div class="error-text" id="emailError">Please enter a valid email address containing '@'.</div>
+      </div>
+      
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Min 6 characters">
+        <div class="error-text" id="passwordError">Password must be at least 6 characters long.</div>
+      </div>
+      
+      <button type="submit" class="login-btn">Log In</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const emailError = document.getElementById('emailError');
+    const passwordError = document.getElementById('passwordError');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault(); // Prevent form submission
+      
+      let isValid = true;
+
+      // Reset previous validation effects
+      emailInput.classList.remove('error');
+      emailError.style.display = 'none';
+      passwordInput.classList.remove('error');
+      passwordError.style.display = 'none';
+
+      // Validate Email (must contain @)
+      if (!emailInput.value.includes('@') || emailInput.value.trim() === '') {
+        emailInput.classList.add('error');
+        emailError.style.display = 'block';
+        isValid = false;
+      }
+
+      // Validate Password (must be > 5 chars)
+      if (passwordInput.value.trim().length < 6) {
+        passwordInput.classList.add('error');
+        passwordError.style.display = 'block';
+        isValid = false;
+      }
+
+      // If valid, you would normally submit to server here
+      if (isValid) {
+        alert('Login Successful!');
+        // form.submit(); 
+      }
+    });
+  </script>
+
+</body>
+</html>
