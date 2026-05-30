@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Flexbox Card Layout</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f7f6;
+      height: 100vh;
+      margin: 0;
+      /* Center the card on the page */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* 7.b) Design a "card" layout using CSS and flexbox */
+    .card {
+      /* Flexbox layout */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      /* Border and Shadow */
+      border: 1px solid #ccc;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+      /* Padding */
+      padding: 30px;
+
+      /* Centered Text */
+      text-align: center;
+
+      /* Additional aesthetics */
+      background-color: white;
+      border-radius: 10px;
+      width: 300px;
+    }
+
+    .card h2 {
+      margin-top: 0;
+      color: #333;
+    }
+
+    .card p {
+      color: #666;
+      line-height: 1.5;
+    }
+
+    .card button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .card button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Beautiful Card</h2>
+    <p>This card layout uses CSS Flexbox. It features a solid border, a soft drop shadow, internal padding, and perfectly centered text just as requested!</p>
+    <button>Learn More</button>
+  </div>
+
+</body>
+</html>
