@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link, useNavigate, useParams } from 'react-router-dom';
 import './index.css';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'http://localhost:5001/api';
 
 // --- COMPONENTS --- //
 
@@ -31,15 +31,28 @@ function ProductList() {
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState('');
 
-  useEffect(() => {
+  const fetchProducts = () => {
     fetch(`${API_URL}/products?q=${search}`)
       .then(res => res.json())
       .then(setProducts);
+  };
+
+  useEffect(() => {
+    fetchProducts();
   }, [search]);
+
+  const seedDb = async () => {
+    await fetch(`${API_URL}/seed`, { method: 'POST' });
+    alert('Products seeded successfully!');
+    fetchProducts();
+  };
 
   return (
     <div className="page">
-      <h1>Our Products</h1>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+        <h1 style={{ margin: 0 }}>Our Products</h1>
+        <button className="btn" style={{ width: 'auto', margin: 0 }} onClick={seedDb}>Seed Products</button>
+      </div>
       <input 
         className="search-bar"
         type="text" 
@@ -50,7 +63,6 @@ function ProductList() {
       <div className="product-grid">
         {products.map(p => (
           <div key={p._id} className="card">
-            <div className="card-icon">{p.image}</div>
             <h3>{p.name}</h3>
             <p className="price">${p.price.toFixed(2)}</p>
             <Link to={`/products/${p._id}`} className="btn">View Details</Link>
@@ -76,7 +88,6 @@ function ProductDetail({ addToCart }) {
   return (
     <div className="page detail-page">
       <div className="card detail-card">
-        <div className="card-icon large-icon">{product.image}</div>
         <h1>{product.name}</h1>
         <p className="desc">{product.desc}</p>
         <h2 className="price">${product.price.toFixed(2)}</h2>

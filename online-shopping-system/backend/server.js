@@ -23,8 +23,7 @@ const User = mongoose.model('User', UserSchema);
 const ProductSchema = new mongoose.Schema({
   name: { type: String, required: true },
   desc: String,
-  price: { type: Number, required: true },
-  image: String
+  price: { type: Number, required: true }
 });
 const Product = mongoose.model('Product', ProductSchema);
 
@@ -131,14 +130,14 @@ app.get('/api/orders', auth, async (req, res) => {
 app.post('/api/seed', async (req, res) => {
   await Product.deleteMany({});
   await Product.insertMany([
-    { name: 'Wireless Headphones', desc: 'Noise-cancelling over-ear headphones.', price: 199.99, image: '🎧' },
-    { name: 'Smartphone', desc: 'Latest 5G smartphone with 128GB storage.', price: 699.00, image: '📱' },
-    { name: 'Gaming Laptop', desc: 'High-performance laptop with RTX 4070.', price: 1299.50, image: '💻' },
-    { name: 'Mechanical Keyboard', desc: 'RGB mechanical keyboard with blue switches.', price: 89.99, image: '⌨️' },
-    { name: 'Smartwatch', desc: 'Fitness tracker and smartwatch.', price: 149.00, image: '⌚' }
+    { name: 'Wireless Headphones', desc: 'Noise-cancelling over-ear headphones.', price: 199.99 },
+    { name: 'Smartphone', desc: 'Latest 5G smartphone with 128GB storage.', price: 699.00 },
+    { name: 'Gaming Laptop', desc: 'High-performance laptop with RTX 4070.', price: 1299.50 },
+    { name: 'Mechanical Keyboard', desc: 'RGB mechanical keyboard with blue switches.', price: 89.99 },
+    { name: 'Smartwatch', desc: 'Fitness tracker and smartwatch.', price: 149.00 }
   ]);
   res.json({ message: 'Database seeded with products!' });
 });
 
-const PORT = 5000;
+const PORT = 5001;
 app.listen(PORT, () => console.log(`Backend API running on http://localhost:${PORT}`));
