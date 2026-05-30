@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Active Session Counter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      background-color: #f4f7f6;
+    }
+    .counter-card {
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      display: inline-block;
+    }
+    .count {
+      font-size: 60px;
+      font-weight: bold;
+      color: #007bff;
+      margin: 20px 0;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 5px;
+      font-weight: bold;
+      color: white;
+      transition: background-color 0.3s;
+    }
+    .login-btn { background-color: #28a745; }
+    .login-btn:hover { background-color: #218838; }
+    .logout-btn { background-color: #dc3545; }
+    .logout-btn:hover { background-color: #c82333; }
+  </style>
+</head>
+<body>
+
+  <div class="counter-card">
+    <h2>Active Users Logged In</h2>
+    <div class="count" id="userCount">0</div>
+    <p>Simulate logging in or out below.</p>
+    <button class="login-btn" onclick="login()">Simulate Login</button>
+    <button class="logout-btn" onclick="logout()">Simulate Logout</button>
+  </div>
+
+  <script>
+    // Initialize count from localStorage if it exists, otherwise 0
+    let currentUsers = parseInt(localStorage.getItem('activeUsers')) || 0;
+    const countDisplay = document.getElementById('userCount');
+
+    // Function to update the DOM and localStorage
+    function updateDisplay(count) {
+      if (count < 0) count = 0; // Prevent negative users
+      currentUsers = count;
+      countDisplay.innerText = currentUsers;
+      localStorage.setItem('activeUsers', currentUsers);
+    }
+
+    // Initial render
+    updateDisplay(currentUsers);
+
+    // Login action
+    function login() {
+      updateDisplay(currentUsers + 1);
+    }
+
+    // Logout action
+    function logout() {
+      updateDisplay(currentUsers - 1);
+    }
+
+    // Listen for changes in localStorage from other tabs!
+    // This allows the counter to sync across multiple open browser tabs.
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'activeUsers') {
+        currentUsers = parseInt(e.newValue) || 0;
+        countDisplay.innerText = currentUsers;
+      }
+    });
+  </script>
+
+</body>
+</html>

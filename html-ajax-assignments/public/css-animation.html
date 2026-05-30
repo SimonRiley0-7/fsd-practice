@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Animation - Box Moving</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #282c34;
+      overflow-x: hidden; /* Prevent horizontal scrollbar */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin-bottom: 50px;
+    }
+
+    /* The Box that will be animated */
+    .animated-box {
+      width: 100px;
+      height: 100px;
+      background-color: #61dafb;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(97, 218, 251, 0.5);
+      
+      /* Apply the animation */
+      /* Name: moveRight, Duration: 4s, Timing: linear, Iteration: infinite, Direction: alternate (bounces back) */
+      animation: moveRight 4s linear infinite alternate;
+    }
+
+    /* Define the keyframes for moving left to right */
+    @keyframes moveRight {
+      0% {
+        transform: translateX(0); /* Starts at the very left edge */
+      }
+      100% {
+        /* Moves right. calc(100vw - 100px) ensures it stops exactly at the right edge without overflowing */
+        transform: translateX(calc(100vw - 100px)); 
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>CSS Box Animation (Left to Right)</h1>
+  
+  <div class="animated-box"></div>
+
+</body>
+</html>
