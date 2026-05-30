@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Horizontal Navigation Bar</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+
+    /* The Navigation Bar Container */
+    .navbar {
+      background-color: #333; /* Dark background */
+      overflow: hidden;       /* Clear floats */
+    }
+
+    /* Horizontal Links inside the navbar */
+    .navbar a {
+      float: left;             /* Align links horizontally */
+      display: block;
+      color: white;            /* White text color */
+      text-align: center;
+      padding: 14px 20px;      /* Spacing around text */
+      text-decoration: none;   /* Remove underline */
+      font-size: 17px;
+      transition: background-color 0.3s ease, color 0.3s ease; /* Smooth hover transition */
+    }
+
+    /* Change color on hover */
+    .navbar a:hover {
+      background-color: #ddd;  /* Light grey background on hover */
+      color: black;            /* Black text on hover */
+    }
+
+    /* Active link style */
+    .navbar a.active {
+      background-color: #04AA6D; /* Green accent for active page */
+      color: white;
+    }
+    
+    /* Content wrapper for demonstration */
+    .content {
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <a class="active" href="#">Home</a>
+    <a href="#">About Us</a>
+    <a href="#">Services</a>
+    <a href="#">Portfolio</a>
+    <a href="#">Contact</a>
+  </div>
+
+  <div class="content">
+    <h2>Welcome to the website</h2>
+    <p>Hover over the links in the navigation bar above to see the color change effect.</p>
+  </div>
+
+</body>
+</html>
