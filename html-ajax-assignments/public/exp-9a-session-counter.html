@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,19 +12,22 @@
       padding: 50px;
       background-color: #f4f7f6;
     }
+
     .counter-card {
       background: white;
       padding: 40px;
       border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       display: inline-block;
     }
+
     .count {
       font-size: 60px;
       font-weight: bold;
       color: #007bff;
       margin: 20px 0;
     }
+
     button {
       padding: 10px 20px;
       font-size: 16px;
@@ -35,12 +39,25 @@
       color: white;
       transition: background-color 0.3s;
     }
-    .login-btn { background-color: #28a745; }
-    .login-btn:hover { background-color: #218838; }
-    .logout-btn { background-color: #dc3545; }
-    .logout-btn:hover { background-color: #c82333; }
+
+    .login-btn {
+      background-color: #28a745;
+    }
+
+    .login-btn:hover {
+      background-color: #218838;
+    }
+
+    .logout-btn {
+      background-color: #dc3545;
+    }
+
+    .logout-btn:hover {
+      background-color: #c82333;
+    }
   </style>
 </head>
+
 <body>
 
   <div class="counter-card">
@@ -77,15 +94,9 @@
       updateDisplay(currentUsers - 1);
     }
 
-    // Listen for changes in localStorage from other tabs!
-    // This allows the counter to sync across multiple open browser tabs.
-    window.addEventListener('storage', (e) => {
-      if (e.key === 'activeUsers') {
-        currentUsers = parseInt(e.newValue) || 0;
-        countDisplay.innerText = currentUsers;
-      }
-    });
+
   </script>
 
 </body>
+
 </html>

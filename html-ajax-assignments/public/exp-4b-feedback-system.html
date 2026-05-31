@@ -36,7 +36,7 @@
     const statusMessage = document.getElementById('statusMessage');
 
     // Handle form submission via simple AJAX
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', function (e) {
       e.preventDefault(); // Prevent page reload
 
       // Get values from form
@@ -51,18 +51,18 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(feedbackData)
       })
-      .then(response => response.json())
-      .then(newFeedback => {
-        // Display the new feedback instantly
-        const div = document.createElement('div');
-        div.innerHTML = `<h4>${newFeedback.name}</h4><p>${newFeedback.message}</p><hr>`;
-        feedbackList.appendChild(div);
+        .then(response => response.json())
+        .then(newFeedback => {
+          // Display the new feedback instantly
+          const div = document.createElement('div');
+          div.innerHTML = `<h4>${newFeedback.name}</h4><p>${newFeedback.message}</p><hr>`;
+          feedbackList.appendChild(div);
 
-        // Show success message and clear form
-        statusMessage.style.display = 'block';
-        setTimeout(() => { statusMessage.style.display = 'none'; }, 3000);
-        form.reset();
-      });
+          // Show success message and clear form
+          statusMessage.style.display = 'block';
+          setTimeout(() => { statusMessage.style.display = 'none'; }, 3000);
+          form.reset();
+        });
     });
   </script>
 </body>

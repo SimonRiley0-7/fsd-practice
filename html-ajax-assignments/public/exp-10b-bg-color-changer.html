@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +14,8 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      transition: background-color 0.5s ease; /* Smooth transition for background color */
+      transition: background-color 0.5s ease;
+      /* Smooth transition for background color */
     }
 
     .btn {
@@ -25,9 +27,10 @@
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
       transition: transform 0.2s;
     }
+
     .btn:active {
       transform: scale(0.95);
     }
@@ -41,7 +44,7 @@
       background-color: #d4edda;
       border: 1px solid #c3e6cb;
       border-radius: 5px;
-      
+
       /* Animation setup */
       opacity: 0;
       transform: translateY(-20px);
@@ -57,6 +60,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <button class="btn" onclick="changeColor()">Change Background Color</button>
@@ -69,19 +73,19 @@
     function changeColor() {
       // 1. Generate a random hex color
       const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
-      
+
       // 2. Change the background color
       document.body.style.backgroundColor = randomColor;
 
       // 3. Show confirmation message with animation
       const msg = document.getElementById('confirmationMessage');
-      
+
       // Briefly remove the class (if it exists) to restart the CSS transition
       msg.classList.remove('show');
-      
+
       // Force a reflow so the browser registers the removal before adding it back
-      void msg.offsetWidth; 
-      
+      void msg.offsetWidth;
+
       // Add the class to trigger the CSS transition/animation
       msg.classList.add('show');
 
@@ -93,4 +97,5 @@
   </script>
 
 </body>
+
 </html>
